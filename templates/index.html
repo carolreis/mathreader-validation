@@ -1,0 +1,84 @@
+<html>
+    <head>
+        <title>RHME</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='bower_components/drawingboard.js/dist/drawingboard.min.css') }}"/>
+        <script src="{{ url_for('static', filename='bower_components/jquery/dist/jquery.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='bower_components/drawingboard.js/dist/drawingboard.js') }}"></script>
+        <script src="{{ url_for('static', filename='bower_components/simple-undo/lib/simple-undo.js') }}"></script>
+
+    </head>
+    <body>
+
+        <section id="mainContent">
+            <h1>Reconhecimento de expressões matemáticas manuscritas</h1>
+            <p>Símbolos aceitos: {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, a, b, c, m, n, x, y, z, +, -, *, ., sqrt}</p>
+            <div id="zbeubeu"></div>
+            <div id='reconhecer'>Reconhecer</div>
+            <div id='latexContainer'>
+                <input id="latex" type="text"/>
+            </div>
+        </section>
+<style>
+	#zbeubeu {
+        position: absolute;
+        left: 0; right: 0;
+        margin: auto;
+		width: 50vw;
+		height: 50vh;
+    }
+    /*
+    .drawing-board-control-drawingmode-eraser-button {
+        width: 30px;
+        height: 30px;
+    }
+    */
+</style>
+
+<script>
+    /*var myBoard = new DrawingBoard.Board('zbeubeu');
+    var control = DrawingBoard.Control.Color;
+    console.log(control);*/
+    var myBoard = new DrawingBoard.Board('zbeubeu', {
+        size: 3,
+        controls: [
+            { Size: { type: false } },
+            { Navigation: { back: false, forward: false } },
+            { DrawingMode: { filler: false } }
+        ],
+        webStorage: 'local'
+    });
+
+    document.querySelector("#reconhecer").addEventListener("click", function() {
+        var img = myBoard.getImg();
+        console.log('IMAGE: ', img)
+        console.log(typeof(img))
+        //img = JSON.stringify(img);
+        //document.querySelector('#teste').setAttribute('src', img)
+    
+        fetch('ajax/recognize/',{
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                "image": img
+            })
+            //body: img.split(",")[1]
+        })
+        .then(function(response) {
+            return response.text()
+        })
+        .then(function(data) {
+            data = JSON.parse(data)
+            print(data)
+            print(data.latex)
+            document.querySelector("#latex").value = data.latex;
+            //var objectURL = URL.createObjectURL(myBlob);
+            //myImage.src = objectURL;
+        });
+    })
+
+</script>
+    </body>
+</html>
