@@ -9,32 +9,29 @@
 
     </head>
     <body>
-
+        <div id="background"></div>
         <section id="mainContent">
-            <h1>Reconhecimento de expressões matemáticas manuscritas</h1>
-            <p>Símbolos aceitos: {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, a, b, c, m, n, x, y, z, +, -, *, ., sqrt}</p>
-            <div id="zbeubeu"></div>
-            <div id='reconhecer'>Reconhecer</div>
-            <div id='latexContainer'>
-                <input id="latex" type="text"/>
+            <header>
+                <h1>Reconhecimento de expressões matemáticas manuscritas</h1>
+                <p><b>Operações e operadores aceitos:</b> adição, subtração, multiplicação, divisão, radiciação, raiz quadrada</p>
+                <p><b>Símbolos aceitos:</b> {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, a, b, c, m, n, x, y, z, +, -, *, ., sqrt}</p>
+                <p><b>Repositório no github:</b>
+                    <a href="https://github.com/carolreis/handwritten-mathematical-expression-recognition-api">
+                        https://github.com/carolreis/handwritten-mathematical-expression-recognition-api
+                    </a>
+                </p>
+                <p><b>Artigo:</b> <a href="{{ url_for('static', filename='...') }}" title="Paper">Download</a></p>
+            </header>
+
+            <div class="quadro">
+                <div class="quadro__canvas" id="zbeubeu"></div>
+                <div class="quadro__botao" id='reconhecer'>Reconhecer</div>
+                <div class="quadro__resultado" id='latexContainer'>
+                    <p>LaTeX:</p>
+                    <div class="quadro__resultado--latex" id='latex'></div>
+                </div>
             </div>
         </section>
-<style>
-	#zbeubeu {
-        position: absolute;
-        left: 0; right: 0;
-        margin: auto;
-		width: 50vw;
-		height: 50vh;
-    }
-    /*
-    .drawing-board-control-drawingmode-eraser-button {
-        width: 30px;
-        height: 30px;
-    }
-    */
-</style>
-
 <script>
     /*var myBoard = new DrawingBoard.Board('zbeubeu');
     var control = DrawingBoard.Control.Color;
@@ -73,7 +70,7 @@
             data = JSON.parse(data)
             print(data)
             print(data.latex)
-            document.querySelector("#latex").value = data.latex;
+            document.querySelector("#latex").innerText = data.latex;
             //var objectURL = URL.createObjectURL(myBlob);
             //myImage.src = objectURL;
         });
