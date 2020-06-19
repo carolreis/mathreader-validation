@@ -3,6 +3,9 @@ runtime: python38
 #env: flex
 entrypoint: "gunicorn -b:$PORT main:app"
 
+env_variables:
+        APP_SETTINGS="config.ProductionConfig"
+
 #instance_class: F2
 
 #env_variables:

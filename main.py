@@ -12,7 +12,8 @@ import re
 import time
 
 app = Flask(__name__)
-app.config.from_object('config')
+#app.config.from_object('config')
+app.config.from_object(os.environ['APP_SETTINGS'])
 BASE_PATH = os.path.dirname(os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe()))))
 
 api.config().set_app_debug_mode_image('disabled')
