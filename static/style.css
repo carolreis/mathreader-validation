@@ -34,6 +34,7 @@ a {
 #mainContent {
     position: relative;
     width: 75%;
+    max-width: 900px;
     margin: auto;
     left: 0; right: 0;
     text-align: center;
@@ -54,7 +55,8 @@ a {
 }
 
 .quadro__canvas {
-    min-height: 60vh;
+    height: 50vh;
+    max-height: 600px;
 }
 
 .quadro__botao {

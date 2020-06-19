@@ -3,10 +3,6 @@
         <title>RHME</title>
         <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
         <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='bower_components/drawingboard.js/dist/drawingboard.min.css') }}"/>
-        <script src="{{ url_for('static', filename='bower_components/jquery/dist/jquery.min.js') }}"></script>
-        <script src="{{ url_for('static', filename='bower_components/drawingboard.js/dist/drawingboard.js') }}"></script>
-        <script src="{{ url_for('static', filename='bower_components/simple-undo/lib/simple-undo.js') }}"></script>
-
     </head>
     <body>
         <div id="background"></div>
@@ -32,50 +28,11 @@
                 </div>
             </div>
         </section>
-<script>
-    /*var myBoard = new DrawingBoard.Board('zbeubeu');
-    var control = DrawingBoard.Control.Color;
-    console.log(control);*/
-    var myBoard = new DrawingBoard.Board('zbeubeu', {
-        size: 3,
-        controls: [
-            { Size: { type: false } },
-            { Navigation: { back: false, forward: false } },
-            { DrawingMode: { filler: false } }
-        ],
-        webStorage: 'local'
-    });
 
-    document.querySelector("#reconhecer").addEventListener("click", function() {
-        var img = myBoard.getImg();
-        console.log('IMAGE: ', img)
-        console.log(typeof(img))
-        //img = JSON.stringify(img);
-        //document.querySelector('#teste').setAttribute('src', img)
-    
-        fetch('ajax/recognize/',{
-            method: 'POST',
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                "image": img
-            })
-            //body: img.split(",")[1]
-        })
-        .then(function(response) {
-            return response.text()
-        })
-        .then(function(data) {
-            data = JSON.parse(data)
-            print(data)
-            print(data.latex)
-            document.querySelector("#latex").innerText = data.latex;
-            //var objectURL = URL.createObjectURL(myBlob);
-            //myImage.src = objectURL;
-        });
-    })
+        <script src="{{ url_for('static', filename='bower_components/jquery/dist/jquery.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='bower_components/drawingboard.js/dist/drawingboard.js') }}"></script>
+        <script src="{{ url_for('static', filename='bower_components/simple-undo/lib/simple-undo.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/recognize.js') }}"></script>
 
-</script>
     </body>
 </html>
