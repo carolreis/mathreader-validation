@@ -2,6 +2,7 @@ from flask import Flask
 from flask import redirect, make_response, request
 from flask import render_template
 from rhme import api
+from rhme.helpers.exceptions import GrammarError, LexicalError, SintaticError
 import os
 import inspect
 import json
@@ -16,7 +17,7 @@ app = Flask(__name__)
 app.config.from_object(os.environ['APP_SETTINGS'])
 BASE_PATH = os.path.dirname(os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe()))))
 
-api.config().set_app_debug_mode_image('disabled')
+# api.config().set_app_debug_mode_image('disabled')
 
 @app.route('/', methods=['GET'])
 def index():
@@ -24,9 +25,9 @@ def index():
 
 @app.route('/ajax/recognize', strict_slashes=False, methods=['POST', 'OPTIONS'])
 def recognize():
-    print('hi')
-    latex = ""
 
+    latex = ""
+    error=True
     try:
         data = request.get_json()
         img_data = data['image']
@@ -44,9 +45,16 @@ def recognize():
         latex, modified_img = hme_recognizer.recognize(img)
         hme_recognizer = None
     except Exception as e:
+        if hasattr(e, 'data'):
+            if 'latex_string_original' in e.data:
+                expression = e.data['latex_string_original']
+                error=True
         print(e)
 
-    return json.dumps({'latex': latex})
+    return json.dumps({
+        'latex': latex,
+        'error': error
+    })
 
 def write_show_image(img, name):
     cv2.imwrite('%s.jpg' % name, img)

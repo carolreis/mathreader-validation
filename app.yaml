@@ -1,15 +1,11 @@
 runtime: python38
 
-#env: flex
+instance_class: F4
+
 entrypoint: "gunicorn -b:$PORT main:app"
 
 env_variables:
-        APP_SETTINGS="config.ProductionConfig"
-
-#instance_class: F2
-
-#env_variables:
-#  BUCKET_NAME: "example-gcs-bucket"
+        APP_SETTINGS: "config.ProductionConfig"
 
 #handlers:
 # Matches requests to /images/... to files in static/images/...

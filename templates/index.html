@@ -9,14 +9,14 @@
         <section id="mainContent">
             <header>
                 <h1>Reconhecimento de expressões matemáticas manuscritas</h1>
-                <p><b>Operações e operadores aceitos:</b> adição, subtração, multiplicação, divisão, radiciação, raiz quadrada</p>
-                <p><b>Símbolos aceitos:</b> {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, a, b, c, m, n, x, y, z, +, -, *, ., sqrt}</p>
-                <p><b>Repositório no github:</b>
+                <p><b>Operações aceitas:</b> adição, subtração, multiplicação, divisão, potenciação, raiz quadrada</p>
+                <p><b>Símbolos aceitos:</b> {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, a, b, c, m, n, x, y, z, +, -, &lowast;, ., &radic;, =, &ne;, {, }, [, ], (, )}</p>
+                <!-- <p><b>Repositório no github:</b>
                     <a href="https://github.com/carolreis/handwritten-mathematical-expression-recognition-api">
                         https://github.com/carolreis/handwritten-mathematical-expression-recognition-api
                     </a>
-                </p>
-                <p><b>Artigo:</b> <a href="{{ url_for('static', filename='...') }}" title="Paper">Download</a></p>
+                </p> -->
+                <!-- <p><b>Artigo:</b> <a href="{{ url_for('static', filename='...') }}" title="Paper">Download</a></p> -->
             </header>
 
             <div class="quadro">
@@ -24,7 +24,8 @@
                 <div class="quadro__botao" id='reconhecer'>Reconhecer</div>
                 <div class="quadro__resultado" id='latexContainer'>
                     <p>LaTeX:</p>
-                    <div class="quadro__resultado--latex" id='latex'></div>
+                    <div class="quadro__resultado__error">A expressão não pode ser reconhecida corretamente. Tente escrevê-la novamente.</div>
+                    <div class="quadro__resultado__latex" id='latex'></div>
                 </div>
             </div>
         </section>

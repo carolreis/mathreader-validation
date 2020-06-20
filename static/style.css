@@ -47,7 +47,7 @@ a {
 .quadro,
 .quadro__canvas,
 .quadro__botao,
-.quadro__resultado--latex,
+.quadro__resultado__latex,
 .quadro__resultado {
     position: relative;
     width: 100%;
@@ -66,9 +66,22 @@ a {
     border: 0;
 }
 
-.quadro__resultado--latex {
+.quadro__resultado__latex {
     border-bottom: 2px #81bdf1 dotted;
     height: 50px;
     background-color: rgba(152, 221, 235, 0.5);
     line-height: 45px;
+}
+
+.quadro__resultado__latex--error {
+    color: red;
+}
+
+.quadro__resultado__error {
+    display: none;
+    color: red;
+    font-weight: bold;
+}
+.quadro__resultado__error.--show {
+    display: block;
 }
