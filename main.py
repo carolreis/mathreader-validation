@@ -27,7 +27,7 @@ def index():
 def recognize():
 
     latex = ""
-    error=True
+    error=False
     try:
         data = request.get_json()
         img_data = data['image']
@@ -47,9 +47,9 @@ def recognize():
     except Exception as e:
         if hasattr(e, 'data'):
             if 'latex_string_original' in e.data:
-                expression = e.data['latex_string_original']
+                latex = e.data['latex_string_original']
                 error=True
-        print(e)
+            print(e.data)
 
     return json.dumps({
         'latex': latex,

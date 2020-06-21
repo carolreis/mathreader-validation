@@ -34,7 +34,8 @@ a {
 #mainContent {
     position: relative;
     width: 75%;
-    max-width: 900px;
+    /* max-width: 900px; */
+    max-width: 1200px;
     margin: auto;
     left: 0; right: 0;
     text-align: center;
@@ -60,10 +61,34 @@ a {
 }
 
 .quadro__botao {
+    position: relative;
     padding: 10px 0;
     color: #FFF;
     background: #d376c5;
     border: 0;
+    height: 30px;
+    line-height: 30px;
+    width: 100%;
+}
+
+#loading {
+    display: none;
+    background-image: url('images/spinner.gif');
+    background-size: 50px 50px;
+    background-repeat: no-repeat;
+    background-position: center;
+    position:absolute;
+    z-index:99999;
+    right:10px;
+    top:0;
+    bottom: 0;
+    margin: auto;
+    width: 50px;
+    height: 50px;
+}
+
+#loading.--show {
+    display: block;
 }
 
 .quadro__resultado__latex {
@@ -82,6 +107,24 @@ a {
     color: red;
     font-weight: bold;
 }
+
 .quadro__resultado__error.--show {
     display: block;
+}
+
+
+@media only screen and (min-width:0px) and (max-width: 800px)  {
+
+    #mainContent {
+        position: relative;
+        width: 90%;
+        max-width: 100%;
+    }
+
+    .quadro__canvas {
+        height: 80vh;
+        max-height: 500px;
+    }
+
+
 }

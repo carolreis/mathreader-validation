@@ -1,15 +1,18 @@
 var myBoard = new DrawingBoard.Board('zbeubeu', {
-    size: 7,
+    // size: 7,
+    // size: 5,
+    size: 4,
     controls: [
-        { Size: { type: false } },
+        { Size: { type: 'dropdown' } },
         { Navigation: { back: false, forward: false } },
-        { DrawingMode: { filler: false } }
+        { DrawingMode: { filler: false, eraser: false } }
     ],
     // webStorage: 'local'
     webStorage: false
 });
 
 var reconhecer = document.querySelector("#reconhecer");
+var loading = document.querySelector("#loading");
 var latexElement = document.querySelector("#latex");
 var errorElement = document.querySelector(".quadro__resultado__error");
 
@@ -17,6 +20,7 @@ reconhecer.addEventListener("click", function() {
 
     latexElement.classList.remove('--error');
     errorElement.classList.remove('--show');
+    loading.classList.add('--show')
 
     if(!reconhecer.classList.contains('--disabled')) {
         reconhecer.classList.add('--disabled');
@@ -43,6 +47,7 @@ reconhecer.addEventListener("click", function() {
         })
         .finally(function() {
             reconhecer.classList.remove('--disabled');
+            loading.classList.remove('--show')
         });
     }
 });
