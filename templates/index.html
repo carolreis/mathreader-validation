@@ -5,14 +5,45 @@
 
         <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
         <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='bower_components/drawingboard.js/dist/drawingboard.min.css') }}"/>
+
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async
+                src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+
     </head>
     <body>
         <div id="background"></div>
         <section id="mainContent">
             <header>
                 <h1>Reconhecimento de expressões matemáticas manuscritas</h1>
-                <p><b>Operações aceitas:</b> adição, subtração, multiplicação, divisão, potenciação, raiz quadrada</p>
-                <p><b>Símbolos aceitos:</b> {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, a, b, c, m, n, x, y, z, +, -, &lowast;, ., &radic;, =, &ne;, {, }, [, ], (, )}</p>
+                <h4>Interface para validação do Trabalho de Conclusão de Curso</h4>
+                <h4>Caroline Santos dos Reis | Ciência da Computação | Univesidade Luterana do Brasil.</h4>
+
+                <div id="info">
+                    <p><b>Sobre o trabalho:</b></p>
+                    <p>A proposta do trabalho foi o desenvolvimento de uma API para reconhecer expressões matemáticas manuscritas.</p>
+                    <p>Esta interface utiliza a API desenvolvida para efetuar o reconhecimento das expressões.</p>
+                    <p>As expressões matemáticas manuscritas são reconhecidas e traduzidas para a linguagem do <b>LaTeX</b></p>
+                    <p>O LaTeX é utilizado para representar a notação matemática em diversos editores de texto, calculadoras online, etc.</p>
+                    <hr/>
+
+                    <p>A API reconhece <b>uma expressão de cada vez</b></p>
+                    <p><b>Operações aceitas:</b> adição, subtração, multiplicação, divisão, potenciação, raiz quadrada</p>
+                    <p><b>Símbolos aceitos:</b> {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, a, b, c, m, n, x, y, z, +, -, &horbar;, &lowast;, ., &radic;, =, &ne;, {, }, [, ], (, )}</p>
+                    <p>
+                        <ul><b>Observações:</b></ul>
+                            <li>A multiplicação é realizada com o símbolo &lowast;</li>
+                            <li>A divisão é realizada com o símbolo de barra da fração &horbar;</li>
+                            <li>Cada símbolo deve ser escrito separadamente. Os símbolos não devem estar conectados.</li>
+                            <ul><b>Convenções da notação matemática:</b></ul>
+                                <li>
+                                    Para o reconhecimento correto, não escreva a barra da fração com tamanho menor que o numerador ou denominador.
+                                </li>
+                            </ul>
+                        </ul>
+                    </p>
+                </div>
                 <!-- <p><b>Repositório no github:</b>
                     <a href="https://github.com/carolreis/handwritten-mathematical-expression-recognition-api">
                         https://github.com/carolreis/handwritten-mathematical-expression-recognition-api
@@ -25,10 +56,20 @@
                 <div class="quadro__canvas" id="zbeubeu"></div>
                 <div class="quadro__botao" id='reconhecer'>Reconhecer<div id="loading"></div></div>
                 <div class="quadro__resultado" id='latexContainer'>
+                    <div class="quadro__resultado__teste" id="teste"></div>
                     <p>LaTeX:</p>
                     <div class="quadro__resultado__error">A expressão não pode ser reconhecida corretamente. Tente escrevê-la novamente.</div>
-                    <div class="quadro__resultado__latex" id='latex'></div>
+                    <div class="quadro__resultado__latex" id="latex"></div>
                 </div>
+            </div>
+            <div id="info_latex">
+                <ul><b>Notação do LaTeX:</b></ul>
+                    <li>\cdot = *</li>
+                    <li>\frac{}{} = divisão</li>
+                    <li>\sqrt{} = raiz quadrada</li>
+                    <li>\neq = &ne;</li>
+                    <li>_ = subescrito</li>
+                </ul>
             </div>
         </section>
 

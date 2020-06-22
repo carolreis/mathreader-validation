@@ -1,4 +1,4 @@
-var myBoard = new DrawingBoard.Board('zbeubeu', {
+ var myBoard = new DrawingBoard.Board('zbeubeu', {
     // size: 7,
     // size: 5,
     size: 4,
@@ -21,6 +21,8 @@ reconhecer.addEventListener("click", function() {
     latexElement.classList.remove('--error');
     errorElement.classList.remove('--show');
     loading.classList.add('--show')
+    var teste = document.querySelector("#teste");
+    teste.innerHTML = "";
 
     if(!reconhecer.classList.contains('--disabled')) {
         reconhecer.classList.add('--disabled');
@@ -40,10 +42,25 @@ reconhecer.addEventListener("click", function() {
         .then(function(data) {
             data = JSON.parse(data)
             latexElement.innerText = data.latex;
+
             if(data.error) {
                 latexElement.classList.add('--error')
                 errorElement.classList.add('--show');
+            } else {
+                MathJax.texReset();
+                var options = MathJax.getMetricsFor(teste);
+                options.display = true;
+                MathJax.tex2chtmlPromise(data.latex, options).then(function (node) {
+                    teste.appendChild(node);
+                    MathJax.startup.document.clear();
+                    MathJax.startup.document.updateDocument();
+                }).catch(function (err) {
+                    teste.innerHTML(document.createElement('pre')).appendChild(document.createTextNode(err.message));
+                }).then(function () {
+                    // nothing
+                });
             }
+            
         })
         .finally(function() {
             reconhecer.classList.remove('--disabled');

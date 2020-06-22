@@ -11,6 +11,8 @@ handlers:
    - url: /static
      static_dir: static
 
+default_expiration: "30s"
+
 #handlers:
 # Matches requests to /images/... to files in static/images/...
 #- url: /images

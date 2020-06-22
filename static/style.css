@@ -7,7 +7,7 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    min-height: 100%;
 }
 a {
     color: #000;
@@ -20,13 +20,13 @@ a {
     -webkit-filter: blur(10px);
     position: fixed;
     width: 100%;
-    height: 100%;
+    min-height: 100%;
     z-index: 0;
 }
 #background::after {
     position: absolute;
     width: 100%;
-    height: 100%;
+    min-height: 100%;
     content: '';
     background: rgba(255,255,255,0.5)
 }
@@ -43,6 +43,14 @@ a {
 
 #mainContent header {
     padding: 5px 0;
+}
+
+#mainContent #info {
+    text-align: left;
+}
+ul{
+    padding: 0;
+    margin-bottom: 8px;
 }
 
 .quadro,
@@ -127,4 +135,18 @@ a {
     }
 
 
+}
+#info_latex{
+    margin-bottom: 20px;
+    padding: 10px 5px;
+    text-align: left;
+    background-color: rgba(255,255,255,0.5);
+}
+
+#info_latex ul{
+    margin-top: 5px;
+}
+
+#teste {
+    font-size: 30px;
 }
