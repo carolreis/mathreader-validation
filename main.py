@@ -13,42 +13,41 @@ import re
 import time
 
 app = Flask(__name__)
-#app.config.from_object('config')
 app.config.from_object(os.environ['APP_SETTINGS'])
 BASE_PATH = os.path.dirname(os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe()))))
 
+#app.config.from_object('config')
 # api.config().set_app_debug_mode_image('disabled')
+# with open("img.txt", 'w') as f:
+#     json.dump(str(data), f)
+# # np.savetxt('test.txt', img)
 
 @app.route('/', methods=['GET'])
 def index():
     return render_template('index.html')
 
-@app.route('/ajax/recognize', strict_slashes=False, methods=['POST', 'OPTIONS'])
+@app.route('/ajax/recognize', strict_slashes = False, methods = ['POST', 'OPTIONS'])
 def recognize():
 
     latex = ""
-    error=False
+    error = False
+
     try:
+
         data = request.get_json()
         img_data = data['image']
         img_data = img_data.split(',')[1]
 
-        im_bytes = base64.b64decode(img_data)
-        im_arr = np.frombuffer(im_bytes, dtype=np.uint8) 
-        img = cv2.imdecode(im_arr, flags=cv2.IMREAD_COLOR)
-
-        # with open("img.txt", 'w') as f:
-        #     json.dump(str(data), f)
-        # # np.savetxt('test.txt', img)
-
         hme_recognizer = api.HME_Recognizer()
-        latex, modified_img = hme_recognizer.recognize(img)
+        hme_recognizer.load_image(img_data)
+        latex, modified_img = hme_recognizer.recognize()
         hme_recognizer = None
+
     except Exception as e:
         if hasattr(e, 'data'):
             if 'latex_string_original' in e.data:
                 latex = e.data['latex_string_original']
-                error=True
+                error = True
             print(e.data)
 
     return json.dumps({

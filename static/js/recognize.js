@@ -1,9 +1,15 @@
- var myBoard = new DrawingBoard.Board('zbeubeu', {
+/* Na validação estava assim:
+size: 4,
+controls: [
+    size.... dropdown
+]
+*/
+var myBoard = new DrawingBoard.Board('zbeubeu', {
     // size: 7,
     // size: 5,
-    size: 4,
+    size: 5, 
     controls: [
-        { Size: { type: 'dropdown' } },
+        // { Size: { type: 'dropdown' } },
         { Navigation: { back: false, forward: false } },
         { DrawingMode: { filler: false, eraser: false } }
     ],
@@ -11,22 +17,25 @@
     webStorage: false
 });
 
-var reconhecer = document.querySelector("#reconhecer");
-var loading = document.querySelector("#loading");
-var latexElement = document.querySelector("#latex");
-var errorElement = document.querySelector(".quadro__resultado__error");
+var reconhecer = document.querySelector("#reconhecer"),
+    loading = document.querySelector("#loading"),
+    latexElement = document.querySelector("#latex"),
+    errorElement = document.querySelector(".quadro__resultado__error"),
+    teste = document.querySelector("#teste");
 
 reconhecer.addEventListener("click", function() {
 
     latexElement.classList.remove('--error');
     errorElement.classList.remove('--show');
-    loading.classList.add('--show')
-    var teste = document.querySelector("#teste");
+    loading.classList.add('--show');
     teste.innerHTML = "";
 
-    if(!reconhecer.classList.contains('--disabled')) {
+    if (!reconhecer.classList.contains('--disabled')) {
+
         reconhecer.classList.add('--disabled');
+
         var img = myBoard.getImg();
+
         fetch('ajax/recognize/',{
             method: 'POST',
             headers: {
