@@ -8,16 +8,37 @@ body {
     left: 0;
     width: 100%;
     min-height: 100%;
+    color: #FFF;
 }
 a {
-    color: #000;
+    /* color: #000; */
+    color: #FFF;
 }
 
+h1,
+#about,
+#latex-title {
+    color: #CFDCFF;
+}
+
+#latex-title {
+    font-size: 14pt;
+    font-weight: bold;
+}
+/*
+    7
+    9
+*/
 #background {
-    background-image: url('images/5.jpg');
+    /* background-image: url('images/5.jpg'); */
+    /* background-image: url('images/7.jpg'); */
+    background-image: url('images/9.jpg');
     background-size: cover;
-    filter: blur(10px);
-    -webkit-filter: blur(10px);
+    background-position: bottom;
+    /* filter: blur(10px); */
+    filter: blur(0px);
+    /* -webkit-filter: blur(10px); */
+    -webkit-filter: blur(0px);
     position: fixed;
     width: 100%;
     min-height: 100%;
@@ -28,14 +49,16 @@ a {
     width: 100%;
     min-height: 100%;
     content: '';
-    background: rgba(255,255,255,0.5)
+    /* background: rgba(255,255,255,0.5) */
+    /* background: rgba(122, 0, 255, 0.75) */
+    background: rgb(56, 0, 117, 0.75);
 }
 
 #mainContent {
     position: relative;
     width: 75%;
     /* max-width: 900px; */
-    max-width: 1200px;
+    max-width: 1100px;
     margin: auto;
     left: 0; right: 0;
     text-align: center;
@@ -64,19 +87,28 @@ ul{
 }
 
 .quadro__canvas {
-    height: 50vh;
-    max-height: 600px;
+    height: 60vh;
+    max-height: 700px;
 }
 
 .quadro__botao {
     position: relative;
     padding: 10px 0;
     color: #FFF;
-    background: #d376c5;
+    /* background: #d376c5; */
+    background: #A811A0;
     border: 0;
     height: 30px;
     line-height: 30px;
-    width: 100%;
+    width: 200px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14pt;
+    border-radius: 20px;
+    border-bottom: 2px #81bdf1 dotted;
 }
 
 #loading {
@@ -102,8 +134,11 @@ ul{
 .quadro__resultado__latex {
     border-bottom: 2px #81bdf1 dotted;
     height: 50px;
-    background-color: rgba(152, 221, 235, 0.5);
+    /* background-color: rgba(152, 221, 235, 0.5); */
+    /* background-color: rgba(255, 255, 255, 0.65); */
+    background-color: rgb(55, 20, 93);
     line-height: 45px;
+    border-bottom: 2px #81bdf1 dotted;
 }
 
 .quadro__resultado__latex--error {
@@ -140,13 +175,14 @@ ul{
     margin-bottom: 20px;
     padding: 10px 5px;
     text-align: left;
-    background-color: rgba(255,255,255,0.5);
+    /* background-color: rgba(255,255,255,0.65); */
+    background-color: rgb(55, 20, 93);
 }
 
 #info_latex ul{
     margin-top: 5px;
 }
 
-#teste {
+#visualLatex {
     font-size: 30px;
 }

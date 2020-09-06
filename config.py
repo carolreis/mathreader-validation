@@ -2,9 +2,9 @@
 import os
 
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
-
 #DEBUG = True
 #ENVIRONMENT = 'development'
+
 
 class Config(object):
     DEBUG = False

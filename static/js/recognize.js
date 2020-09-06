@@ -1,4 +1,4 @@
-/* Na validação estava assim:
+/* At validation it was like that:
 size: 4,
 controls: [
     size.... dropdown
@@ -10,29 +10,29 @@ var myBoard = new DrawingBoard.Board('zbeubeu', {
     size: 5, 
     controls: [
         // { Size: { type: 'dropdown' } },
-        { Navigation: { back: false, forward: false } },
+        { Navigation: { back: true, forward: true } },
         { DrawingMode: { filler: false, eraser: false } }
     ],
     // webStorage: 'local'
     webStorage: false
 });
 
-var reconhecer = document.querySelector("#reconhecer"),
+var recognize = document.querySelector("#recognize"),
     loading = document.querySelector("#loading"),
     latexElement = document.querySelector("#latex"),
     errorElement = document.querySelector(".quadro__resultado__error"),
-    teste = document.querySelector("#teste");
+    visualLatex = document.querySelector("#visualLatex");
 
-reconhecer.addEventListener("click", function() {
+recognize.addEventListener("click", function() {
 
     latexElement.classList.remove('--error');
     errorElement.classList.remove('--show');
     loading.classList.add('--show');
-    teste.innerHTML = "";
+    visualLatex.innerHTML = "";
 
-    if (!reconhecer.classList.contains('--disabled')) {
+    if (!recognize.classList.contains('--disabled')) {
 
-        reconhecer.classList.add('--disabled');
+        recognize.classList.add('--disabled');
 
         var img = myBoard.getImg();
 
@@ -57,14 +57,15 @@ reconhecer.addEventListener("click", function() {
                 errorElement.classList.add('--show');
             } else {
                 MathJax.texReset();
-                var options = MathJax.getMetricsFor(teste);
+                var options = MathJax.getMetricsFor(visualLatex);
                 options.display = true;
+
                 MathJax.tex2chtmlPromise(data.latex, options).then(function (node) {
-                    teste.appendChild(node);
+                    visualLatex.appendChild(node);
                     MathJax.startup.document.clear();
                     MathJax.startup.document.updateDocument();
                 }).catch(function (err) {
-                    teste.innerHTML(document.createElement('pre')).appendChild(document.createTextNode(err.message));
+                    visualLatex.innerHTML = err.message;
                 }).then(function () {
                     // nothing
                 });
@@ -72,7 +73,7 @@ reconhecer.addEventListener("click", function() {
             
         })
         .finally(function() {
-            reconhecer.classList.remove('--disabled');
+            recognize.classList.remove('--disabled');
             loading.classList.remove('--show')
         });
     }
