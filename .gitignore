@@ -1,0 +1,7 @@
+mathreader_validation.egg-info/
+*.pyc
+lib/
+bin/
+__pycache__/*
+.cfg
+.env/
