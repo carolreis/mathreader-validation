@@ -16,12 +16,6 @@ app = Flask(__name__)
 app.config.from_object(os.environ['APP_SETTINGS'])
 BASE_PATH = os.path.dirname(os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe()))))
 
-# app.config.from_object('config')
-# api.config().set_app_debug_mode_image('disabled')
-# with open("img.txt", 'w') as f:
-#     json.dump(str(data), f)
-# # np.savetxt('test.txt', img)
-
 
 @app.route('/', methods=['GET'])
 def index():
