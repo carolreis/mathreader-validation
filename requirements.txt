@@ -31,7 +31,7 @@ imutils==0.5.3
 ipaddr==2.2.0
 itsdangerous==1.1.0
 jeepney==0.4.3
-Jinja2==2.11.2
+Jinja2==2.11.3
 Keras-Preprocessing==1.1.2
 keyring==21.2.1
 kiwisolver==1.2.0
