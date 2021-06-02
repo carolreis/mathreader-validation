@@ -69,7 +69,7 @@ scipy==1.4.1
 SecretStorage==3.1.2
 six==1.14.0
 twine==3.1.1
-urllib3==1.25.8
+urllib3==1.26.5
 webencodings==0.5.1
 Werkzeug==1.0.1
 wrapt==1.12.1
